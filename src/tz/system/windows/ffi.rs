@@ -28,14 +28,9 @@ pub(super) struct DYNAMIC_TIME_ZONE_INFORMATION {
     dynamic_daylight_time_disabled: u8,
 }
 
-#[link(name = "kernel32", kind = "raw-dylib")]
-unsafe extern "system" {
-    /// Retrieves the current time zone and dynamic daylight saving time settings.
-    ///
-    /// These settings control the translations between Coordinated Universal Time (UTC) and local time.
-    ///
-    /// <https://learn.microsoft.com/en-us/windows/win32/api/timezoneapi/nf-timezoneapi-getdynamictimezoneinformation>
-    pub(super) unsafe fn GetDynamicTimeZoneInformation(
-        info: *mut DYNAMIC_TIME_ZONE_INFORMATION,
-    ) -> u32;
-}
+// Retrieves the current time zone and dynamic daylight saving time settings.
+//
+// These settings control the translations between Coordinated Universal Time (UTC) and local time.
+//
+// <https://learn.microsoft.com/en-us/windows/win32/api/timezoneapi/nf-timezoneapi-getdynamictimezoneinformation>
+windows_link::link!("kernel32.dll" "system" fn GetDynamicTimeZoneInformation(info: *mut DYNAMIC_TIME_ZONE_INFORMATION) -> u32);
