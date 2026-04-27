@@ -1,6 +1,6 @@
 //! FFI bindings to the Windows function and types used to acquire timezone information
 
-pub const TIME_ZONE_ID_INVALID: u32 = 4294967295;
+pub const TIME_ZONE_ID_INVALID: u32 = 0xffffffff;
 
 #[repr(C)]
 struct SYSTEMTIME {
